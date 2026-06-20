@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ookini - Café de Especialidad</title>
+    <style>
+        :root {
+            --bg-color: #fcfbf7;
+            --text-color: #2b2927;
+            --accent-color: #8a7355;
+            --accent-light: #f3efe6;
+            --border-color: #e3ded5;
+            --danger-color: #a94442;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace; /* Toque estético y limpio */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            letter-spacing: 4px;
+            font-weight: 400;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-style: italic;
+            color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            background: #fff;
+        }
+
+        .card h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .counter-badge {
+            background-color: var(--accent-light);
+            padding: 15px;
+            text-align: center;
+            border: 1px dashed var(--accent-color);
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+
+        .counter-badge span {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--accent-color);
+        }
+
+        button:disabled {
+            background-color: var(--border-color);
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .info-block {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Panel de control para el prototipo */
+        .admin-panel {
+            margin-top: 80px;
+            padding: 20px;
+            border: 1px solid var(--danger-color);
+            background-color: #fff8f8;
+        }
+        .admin-panel h3 { color: var(--danger-color); margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>OOKINI</h1>
+        <p>— Gracias desde el corazón de Kioto —</p>
+    </header>
+
+    <div class="container">
+        <section class="intro">
+            <p>En la región de Kansai, <strong>Ookini</strong> significa "gracias". Nos inspiramos en los rituales pausados de Kioto para ofrecerte una experiencia cafetera exclusiva, limitando nuestras extracciones de especialidad a solo 50 tazas al día para asegurar la perfección en cada gota.</p>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">Horario: Todos los días de 8:00 a. m. a 8:00 p. m.</p>
+        </section>
+
+        <div class="counter-badge">
+            Tazas de preparación especial disponibles hoy: <span id="tazas-disponibles">50</span> / 50
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Experiencia Walk-In</h2>
+                <p style="margin-bottom: 20px; font-size: 0.95rem;">Sin reserva previa. Ven, siéntate y disfruta del ritmo del día.</p>
+                <div class="menu-item">
+                    <span>Prensa Francesa</span>
+                    <span>$3.00</span>
+                </div>
+                <p class="info-block">*Disponible de forma ilimitada hasta el cierre del local.</p>
+            </div>
+
+            <div class="card">
+                <h2>Preparaciones Especiales</h2>
+                <p style="margin-bottom: 20px; font-size: 0.95rem;">Métodos complejos que requieren precisión y reserva anticipada.</p>
+                <div class="menu-item">
+                    <span>V60</span>
+                    <span>$5.00</span>
+                </div>
+                <div class="menu-item">
+                    <span>Kyoto Drip</span>
+                    <span>$7.00</span>
+                </div>
+                <div class="menu-item">
+                    <span>Siphon</span>
+                    <span>$8.00</span>
+                </div>
+                <p class="info-block">*Máximo 2 tazas por persona al día.</p>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card" style="grid-column: 1 / -1;">
+                <h2>Sistema de Reservas en Línea</h2>
+                <form id="form-reserva">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label for="tipo-reserva">Tipo de Experiencia</label>
+                            <select id="tipo-reserva" required>
+                                <option value="metodo">Método Especial (V60, Kyoto Drip, Siphon)</option>
+                                <option value="cata">Cata Semanal ($25 por persona)</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="group-metodo">
+                            <label for="metodo-select">Selecciona el Método</label>
+                            <select id="metodo-select">
+                                <option value="V60">V60 - $5</option>
+                                <option value="Kyoto drip">Kyoto Drip - $7</option>
+                                <option value="Siphon">Siphon - $8</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label for="cantidad">Cantidad (Cupos / Tazas)</label>
+                            <select id="cantidad" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Tu Nombre</label>
+                            <input type="text" id="nombre" placeholder="Ej. Kenji Sato" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="btn-reservar">SOLICITAR RESERVA</button>
+                </form>
+                <div id="mensaje-reserva" style="margin-top: 20px; text-align: center; font-weight: bold;"></div>
+                
+                <div style="margin-top: 20px; padding-top: 15px; border-top: 1px dashed var(--border-color); font-size: 0.9rem;">
+                    <strong>Estado de la Cata Semanal:</strong> <span id="cupos-cata">8</span> cupos disponibles para esta semana.
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-panel">
+            <h3>Panel de Control del Prototipo</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 15px;">Usa este botón para simular un nuevo día y reiniciar los contadores en tu navegador.</p>
+            <button onclick="reiniciarSimulador()" style="background-color: var(--danger-color); font-size: 0.8rem; padding: 10px;">REINICIAR CONTADORES DE HOY</button>
+        </div>
+    </div>
+
+    <script>
+        // --- LÓGICA DEL NEGOCIO (ESTADO INICIAL Y PERSISTENCIA) ---
+        const LIMITE_TAZAS_DIARIAS = 50;
+        const LIMITE_CATA_SEMANAL = 8;
+
+        let estado = {
+            tazasDisponibles: LIMITE_TAZAS_DIARIAS,
+            cuposCata: LIMITE_CATA_SEMANAL
+        };
+
+        // Cargar estado guardado anteriormente si existe
+        if (localStorage.getItem('ookini_estado')) {
+            estado = JSON.parse(localStorage.getItem('ookini_estado'));
+        } else {
+            guardarEstado();
+        }
+
+        const tipoReservaSelect = document.getElementById('tipo-reserva');
+        const metodoSelect = document.getElementById('metodo-select');
+        const groupMetodo = document.getElementById('group-metodo');
+        const cantidadSelect = document.getElementById('cantidad');
+        const formReserva = document.getElementById('form-reserva');
+        const btnReservar = document.getElementById('btn-reservar');
+
+        // Escuchar cambios en el tipo de reserva para adaptar el formulario dinámicamente
+        tipoReservaSelect.addEventListener('change', () => {
+            if (tipoReservaSelect.value === 'cata') {
+                groupMetodo.style.display = 'none';
+                // Para las catas permitimos seleccionar hasta los 8 cupos disponibles
+                actualizarOpcionesCantidad(estado.cuposCata);
+            } else {
+                groupMetodo.style.display = 'block';
+                // Regla de negocio: Máximo 2 tazas por persona para preparaciones especiales
+                actualizarOpcionesCantidad(Math.min(2, estado.tazasDisponibles));
+            }
+        });
+
+        function actualizarOpcionesCantidad(max) {
+            cantidadSelect.innerHTML = '';
+            if (max <= 0) {
+                const opt = document.createElement('option');
+                opt.value = 0;
+                opt.textContent = "Sin cupos";
+                cantidadSelect.appendChild(opt);
+                return;
+            }
+            for (let i = 1; i <= max; i++) {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = i;
+                cantidadSelect.appendChild(opt);
+            }
+        }
+
+        function guardarEstado() {
+            localStorage.setItem('ookini_estado', JSON.stringify(estado));
+            actualizarInterfaz();
+        }
+
+        function actualizarInterfaz() {
+            document.getElementById('tazas-disponibles').textContent = estado.tazasDisponibles;
+            document.getElementById('cupos-cata').textContent = estado.cuposCata;
+
+            // Bloquear el botón general si todo está agotado
+            if (estado.tazasDisponibles <= 0 && tipoReservaSelect.value === 'metodo') {
+                btnReservar.disabled = true;
+                btnReservar.textContent = "TAZAS ESPECIALES AGOTADAS HOY";
+            } else if (estado.cuposCata <= 0 && tipoReservaSelect.value === 'cata') {
+                btnReservar.disabled = true;
+                btnReservar.textContent = "CATA SEMANAl SIN CUPOS";
+            } else {
+                btnReservar.disabled = false;
+                btnReservar.textContent = "SOLICITAR RESERVA";
+            }
+        }
+
+        // Procesar el formulario de reserva
+        formReserva.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const tipo = tipoReservaSelect.value;
+            const cantidad = parseInt(cantidadSelect.value);
+            const nombre = document.getElementById('nombre').value;
+            const mensajeDiv = document.getElementById('mensaje-reserva');
+
+            if (cantidad <= 0) {
+                mensajeDiv.style.color = 'var(--danger-color)';
+                mensajeDiv.textContent = "No hay disponibilidad suficiente para procesar esta solicitud.";
+                return;
+            }
+
+            if (tipo === 'metodo') {
+                if (estado.tazasDisponibles >= cantidad) {
+                    estado.tazasDisponibles -= cantidad;
+                    mensajeDiv.style.color = 'green';
+                    mensajeDiv.textContent = `¡Ookini, ${nombre}! Tu reserva de ${cantidad} taza(s) de ${metodoSelect.value} ha sido confirmada.`;
+                    guardarEstado();
+                    // Resetear límites del selector tras la compra
+                    actualizarOpcionesCantidad(Math.min(2, estado.tazasDisponibles));
+                } else {
+                    mensajeDiv.style.color = 'var(--danger-color)';
+                    mensajeDiv.textContent = "Lo sentimos, ya no quedan suficientes tazas disponibles para hoy.";
+                }
+            } else if (tipo === 'cata') {
+                if (estado.cuposCata >= cantidad) {
+                    estado.cuposCata -= cantidad;
+                    mensajeDiv.style.color = 'green';
+                    mensajeDiv.textContent = `¡Ookini, ${nombre}! Reservaste ${cantidad} cupo(s) para la Cata Semanal ($${cantidad * 25} USD).`;
+                    guardarEstado();
+                    actualizarOpcionesCantidad(estado.cuposCata);
+                } else {
+                    mensajeDiv.style.color = 'var(--danger-color)';
+                    mensajeDiv.textContent = "Lo sentimos, no quedan suficientes lugares para la cata.";
+                }
+            }
+
+            formReserva.reset();
+            tipoReservaSelect.dispatchEvent(new Event('change')); // Forzar actualización de campos visuales
+        });
+
+        function reiniciarSimulador() {
+            localStorage.removeItem('ookini_estado');
+            estado = {
+                tazasDisponibles: LIMITE_TAZAS_DIARIAS,
+                cuposCata: LIMITE_CATA_SEMANAL
+            };
+            guardarEstado();
+            document.getElementById('mensaje-reserva').textContent = "Contadores reiniciados con éxito.";
+            document.getElementById('mensaje-reserva').style.color = 'blue';
+            tipoReservaSelect.dispatchEvent(new Event('change'));
+        }
+
+        // Carga inicial de datos
+        tipoReservaSelect.dispatchEvent(new Event('change'));
+        actualizarInterfaz();
+    </script>
+</body>
+</html>
